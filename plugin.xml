@@ -793,7 +793,7 @@ ${cursor}
             <separator name="commentGroup"/>
             <separator name="spellGroup"/>
          </menu>
-          <action
+         <action
                 class="net.sourceforge.texlipse.actions.WordCountAction"
                 definitionId="net.sourceforge.texlipse.commands.wordCount"
                 icon="icons/wordcount.gif"
@@ -830,7 +830,7 @@ ${cursor}
                style="push"
                toolbarPath="latexGroup"
                tooltip="Save this file as a project template"/>
-         <action
+         <!--<action
                class="net.sourceforge.texlipse.actions.PartialBuildAction"
                definitionId="net.sourceforge.texlipse.commands.partialBuild"
                icon="icons/buildpartially.gif"
@@ -839,7 +839,7 @@ ${cursor}
                menubarPath="net.sourceforge.texlipse.menus.latex/latexGroup"
                style="toggle"
                toolbarPath="latexGroup"
-               tooltip="Toggle partial building on current project"/>
+               tooltip="Toggle partial building on current project"/>-->
          <action
                class="net.sourceforge.texlipse.actions.TexWordWrapAction"
                definitionId="net.sourceforge.texlipse.commands.texWordWrap"
@@ -967,8 +967,15 @@ ${cursor}
             id="net.sourceforge.texlipse.commands.saveAsTemplate"/>
       <command
             categoryId="net.sourceforge.texlipse.latexEditingCategory"
-            name="Partial Build"
-            id="net.sourceforge.texlipse.commands.partialBuild"/>
+            defaultHandler="net.sourceforge.texlipse.handlers.PartialBuildCommandDefaultHandler"
+            description="Toggles partial building"
+            id="net.sourceforge.texlipse.commands.partialBuild"
+            name="Partial Build">
+         <state
+               class="org.eclipse.jface.commands.ToggleState"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
       <command
             categoryId="net.sourceforge.texlipse.latexEditingCategory"
             name="Wrap text"
@@ -1267,5 +1274,23 @@ ${cursor}
             id="net.sourceforge.texlipse.LaTeXSpellEngine"
             label="Latex">
       </engine>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="net.sourceforge.texlipse.cb_toolbar"
+               label="cb_toolbar">
+            <command
+                  commandId="net.sourceforge.texlipse.commands.partialBuild"
+                  icon="icons/buildpartially.gif"
+                  label="Partial building"
+                  style="toggle"
+                  tooltip="Toggle partial building for this project">
+            </command>
+         </toolbar>
+      </menuContribution>
    </extension>
 </plugin>
