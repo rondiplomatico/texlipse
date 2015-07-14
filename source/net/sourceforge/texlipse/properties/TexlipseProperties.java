@@ -524,7 +524,7 @@ public class TexlipseProperties {
         String value = null;
         try {
             value = project.getPersistentProperty(new QualifiedName(TexlipseProperties.PACKAGE_NAME, property));
-            System.out.println("Read '"+property+"': "+value);
+            //System.out.println("Read '"+property+"': "+value);
         } catch (CoreException e) {
             // do nothing
         }
@@ -540,7 +540,7 @@ public class TexlipseProperties {
      */
     public static void setProjectProperty(IResource project, String property, String value) {
         try {
-        	System.out.println("Write '"+property+"': "+value);
+        	//System.out.println("Write '"+property+"': "+value);
         	project.setPersistentProperty(new QualifiedName(TexlipseProperties.PACKAGE_NAME, property), value);
         } catch (CoreException e) {
             // do nothing
